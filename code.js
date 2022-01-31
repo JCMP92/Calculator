@@ -1,3 +1,14 @@
+const numBtns = document.querySelectorAll('.num-bnt');
+const calcDisplay = document.getElementById('clac-display');
+
+numBtns.forEach(btn => btn.addEventListener('click', btnsFunc));
+
+function btnsFunc() {
+    calcDisplay.textContent = this.id;
+    console.log(this.id);
+}
+
+//OPERANDS FUNCTIONS-----------------------------
 function sum (a, b){
     return a + b;	
 };
