@@ -1,12 +1,48 @@
+const displayValue = '0'; 
+function newVal() {
+    displayValue = calcDisplay.textContent; 
+}
+
 const numBtns = document.querySelectorAll('.num-bnt');
+const clearBtn = document.getElementById('clear');
+const delBtn = document.getElementById('delete');
+const dotBtn = document.getElementById('.');
 const calcDisplay = document.getElementById('clac-display');
 
+
 numBtns.forEach(btn => btn.addEventListener('click', btnsFunc));
+clearBtn.addEventListener('click', clearDisp);
+delBtn.addEventListener('click', deleteLast);
+dotBtn.addEventListener('click', dotFunc);
+
 
 function btnsFunc() {
-    calcDisplay.textContent = this.id;
-    console.log(this.id);
-}
+    if (calcDisplay.textContent === '0') {
+        calcDisplay.textContent = this.id;
+    } else {
+        calcDisplay.textContent = calcDisplay.textContent + this.id;
+    }
+console.log(this.id); 
+};
+
+function clearDisp() {
+    calcDisplay.textContent = '0';
+};
+
+function deleteLast() {
+        calcDisplay.textContent = calcDisplay.textContent.toString().slice(0,-1);
+};
+
+function dotFunc() {
+    if (calcDisplay.textContent.includes('.')) {
+        return 
+    } else {
+    calcDisplay.textContent = calcDisplay.textContent + '.'; 
+    }
+   
+};
+
+
 
 //OPERANDS FUNCTIONS-----------------------------
 function sum (a, b){
@@ -37,7 +73,7 @@ function operand (a, b, c){
                 return divide(a, b);	
               }   
         default:
-            break;
+            return null;
     }
 };
 
