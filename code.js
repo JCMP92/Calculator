@@ -1,26 +1,33 @@
+function sum (a, b){
+    return a + b;	
+};
+function subtract (a, b){
+    return a - b;	
+};
+function multiply (a, b){
+    return a * b;	
+};
+function divide (a, b){
+    return a / b;	
+};
+
 function operand (a, b, c){
-    let result = 0;
     switch (c) {
         case '+':
-            result = a + b;	
-            break;
+            return sum (a, b);
         case '-':
-            result = a - b;	
-            break; 
+            return subtract (a, b);	
         case '*':
-            result = a * b;	
-            break;    
+            return multiply (a, b);	 
         case '/':
             if (b === 0) {
                 throw "Can't divide by 0!"
               } else {
-                result = a / b;	
-              }
-              break;    
+                return divide(a, b);	
+              }   
         default:
             break;
     }
-    return result;
 };
 
 
