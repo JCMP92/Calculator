@@ -1,47 +1,19 @@
-const numBtns = document.querySelectorAll('.num-bnt');
+const numBtns = document.querySelectorAll('.num-btn');
+const operBtns = document.querySelectorAll('.operator-btn');
 const clearBtn = document.getElementById('clear');
 const delBtn = document.getElementById('delete');
 const dotBtn = document.getElementById('.');
+const equalBtn = document.getElementById('=');
 const calcDisplay = document.getElementById('clac-display');
+const secondDisplay = document.getElementById('second-display');
 
 
 numBtns.forEach(btn => btn.addEventListener('click', btnsFunc));
+operBtns.forEach(btn => btn.addEventListener('click', operatorFunc));
 clearBtn.addEventListener('click', clearDisp);
 delBtn.addEventListener('click', deleteLast);
 dotBtn.addEventListener('click', dotFunc);
-
-
-let storedVal = ' ';
-
-function btnsFunc() {
-        if (calcDisplay.textContent === '0') {
-            calcDisplay.textContent = this.id;
-        } else {
-            calcDisplay.textContent = calcDisplay.textContent + this.id;
-        }
-    console.log(this.id); 
-    storedVal =  calcDisplay.textContent;
-};
-
-function clearDisp() {
-    calcDisplay.textContent = '0';
-    storedVal =  calcDisplay.textContent;
-};
-
-function deleteLast() {
-    calcDisplay.textContent = calcDisplay.textContent.toString().slice(0,-1);
-    storedVal =  calcDisplay.textContent;
-};
-
-function dotFunc() {
-    if (calcDisplay.textContent.includes('.')) {
-        return 
-    } else {
-    calcDisplay.textContent = calcDisplay.textContent + '.'; 
-    }
-   
-};
-
+equalBtn.addEventListener('click', equalFunc);
 
 
 //OPERANDS FUNCTIONS-----------------------------
@@ -76,6 +48,54 @@ function operand (a, b, c){
             return null;
     }
 };
+
+
+let storedVal = ' ';
+let operatorVal = ' ';
+let secondVal = ' ';
+let result = ' ';
+
+
+function btnsFunc() {
+        if (calcDisplay.textContent === '0') {
+            calcDisplay.textContent = this.id;
+        } else {
+            calcDisplay.textContent = calcDisplay.textContent + this.id;
+        }
+    console.log(this.id); 
+};
+
+function operatorFunc() {
+    storedVal =  calcDisplay.textContent;
+    operatorVal = this.id;
+    secondDisplay.textContent = storedVal + this.id;
+    calcDisplay.textContent = '0';
+
+}
+
+function clearDisp() {
+    calcDisplay.textContent = '0';
+    secondDisplay.textContent =' ';
+};
+
+function deleteLast() {
+    calcDisplay.textContent = calcDisplay.textContent.toString().slice(0,-1);
+};
+
+function dotFunc() {
+    if (calcDisplay.textContent.includes('.')) {
+        return 
+    } else {
+    calcDisplay.textContent = calcDisplay.textContent + '.'; 
+    }
+   
+};
+
+function equalFunc() {
+    secondVal =  calcDisplay.textContent;
+    result = operand (parseFloat(storedVal), parseFloat(secondVal), operatorVal);
+    calcDisplay.textContent = result;
+}
 
 
 
