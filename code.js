@@ -1,8 +1,3 @@
-const displayValue = '0'; 
-function newVal() {
-    displayValue = calcDisplay.textContent; 
-}
-
 const numBtns = document.querySelectorAll('.num-bnt');
 const clearBtn = document.getElementById('clear');
 const delBtn = document.getElementById('delete');
@@ -16,21 +11,26 @@ delBtn.addEventListener('click', deleteLast);
 dotBtn.addEventListener('click', dotFunc);
 
 
+let storedVal = ' ';
+
 function btnsFunc() {
-    if (calcDisplay.textContent === '0') {
-        calcDisplay.textContent = this.id;
-    } else {
-        calcDisplay.textContent = calcDisplay.textContent + this.id;
-    }
-console.log(this.id); 
+        if (calcDisplay.textContent === '0') {
+            calcDisplay.textContent = this.id;
+        } else {
+            calcDisplay.textContent = calcDisplay.textContent + this.id;
+        }
+    console.log(this.id); 
+    storedVal =  calcDisplay.textContent;
 };
 
 function clearDisp() {
     calcDisplay.textContent = '0';
+    storedVal =  calcDisplay.textContent;
 };
 
 function deleteLast() {
-        calcDisplay.textContent = calcDisplay.textContent.toString().slice(0,-1);
+    calcDisplay.textContent = calcDisplay.textContent.toString().slice(0,-1);
+    storedVal =  calcDisplay.textContent;
 };
 
 function dotFunc() {
