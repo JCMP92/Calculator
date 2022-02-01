@@ -54,6 +54,7 @@ let storedVal = ' ';
 let operatorVal = ' ';
 let secondVal = ' ';
 let result = ' ';
+let resultCounter = 0;
 
 
 function btnsFunc() {
@@ -70,6 +71,7 @@ function operatorFunc() {
     operatorVal = this.id;
     secondDisplay.textContent = storedVal + this.id;
     calcDisplay.textContent = '0';
+    resultCounter = 0;
 
 }
 
@@ -92,10 +94,16 @@ function dotFunc() {
 };
 
 function equalFunc() {
+    if (resultCounter !== 0) {
+        return;
+    }
     secondVal =  calcDisplay.textContent;
-    result = operand (parseFloat(storedVal), parseFloat(secondVal), operatorVal);
+    result = roundedNumber(operand (parseFloat(storedVal), parseFloat(secondVal), operatorVal));
     calcDisplay.textContent = result;
+    resultCounter ++;
 }
 
-
+function roundedNumber(num) {
+    return Math.round(num * 10000) / 10000
+  }
 
