@@ -55,29 +55,44 @@ let operatorVal = ' ';
 let secondVal = ' ';
 let result = ' ';
 let resultCounter = 0;
+let operandCounter = 0;
 
 
 function btnsFunc() {
-        if (calcDisplay.textContent === '0') {
+        if (resultCounter !== 0) {
+            clearDisp();
+        }
+         if (calcDisplay.textContent === '0' ) {
             calcDisplay.textContent = this.id;
         } else {
             calcDisplay.textContent = calcDisplay.textContent + this.id;
-        }
+        };
     console.log(this.id); 
 };
 
 function operatorFunc() {
+    if (operandCounter !== 0) {
+        equalFunc();
+        resultCounter = 0;
+    } 
     storedVal =  calcDisplay.textContent;
     operatorVal = this.id;
-    secondDisplay.textContent = storedVal + this.id;
+    secondDisplay.textContent = storedVal + ' ' + this.id;
     calcDisplay.textContent = '0';
     resultCounter = 0;
-
+    operandCounter ++;
+    
 }
 
 function clearDisp() {
     calcDisplay.textContent = '0';
     secondDisplay.textContent =' ';
+    storedVal = ' ';
+    operatorVal = ' ';
+    secondVal = ' ';
+    result = ' ';
+    resultCounter = 0;
+    operandCounter = 0;
 };
 
 function deleteLast() {
@@ -85,6 +100,9 @@ function deleteLast() {
 };
 
 function dotFunc() {
+    if (resultCounter !== 0) {
+        clearDisp();
+    }
     if (calcDisplay.textContent.includes('.')) {
         return 
     } else {
@@ -100,10 +118,10 @@ function equalFunc() {
     secondVal =  calcDisplay.textContent;
     result = roundedNumber(operand (parseFloat(storedVal), parseFloat(secondVal), operatorVal));
     calcDisplay.textContent = result;
+    secondDisplay.textContent =  storedVal + ' ' + operatorVal + ' ' + secondVal + ' ' + '=';
     resultCounter ++;
 }
 
 function roundedNumber(num) {
     return Math.round(num * 10000) / 10000
   }
-
