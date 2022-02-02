@@ -14,7 +14,7 @@ clearBtn.addEventListener('click', clearDisp);
 delBtn.addEventListener('click', deleteLast);
 dotBtn.addEventListener('click', dotFunc);
 equalBtn.addEventListener('click', equalFunc);
-
+window.addEventListener('keydown', keyboardPressed)
 
 //OPERANDS FUNCTIONS-----------------------------
 function sum (a, b){
@@ -40,7 +40,7 @@ function operand (a, b, c){
             return multiply (a, b);	 
         case '/':
             if (b === 0) {
-                throw "Can't divide by 0!"
+                alert("You can't divide by 0!");
               } else {
                 return divide(a, b);	
               }   
@@ -70,6 +70,18 @@ function btnsFunc() {
     console.log(this.id); 
 };
 
+function keyboardFunc(value) {
+    if (resultCounter !== 0) {
+        clearDisp();
+    }
+     if (calcDisplay.textContent === '0' ) {
+        calcDisplay.textContent = value;
+    } else {
+        calcDisplay.textContent = calcDisplay.textContent + value;
+    };
+console.log(value); 
+};
+
 function operatorFunc() {
     if (operandCounter !== 0) {
         equalFunc();
@@ -78,6 +90,20 @@ function operatorFunc() {
     storedVal =  calcDisplay.textContent;
     operatorVal = this.id;
     secondDisplay.textContent = storedVal + ' ' + this.id;
+    calcDisplay.textContent = '0';
+    resultCounter = 0;
+    operandCounter ++;
+    
+}
+
+function keyboardOperatorFunc(e) {
+    if (operandCounter !== 0) {
+        equalFunc();
+        resultCounter = 0;
+    } 
+    storedVal =  calcDisplay.textContent;
+    operatorVal = e.key;
+    secondDisplay.textContent = storedVal + ' ' + e.key;
     calcDisplay.textContent = '0';
     resultCounter = 0;
     operandCounter ++;
@@ -124,4 +150,20 @@ function equalFunc() {
 
 function roundedNumber(num) {
     return Math.round(num * 10000) / 10000
-  }
+}
+
+function keyboardPressed(e) {
+    if (e.key >= 0 && e.key <= 9) {
+    keyboardFunc(e.key);
+    } else if  (e.key === '.') {
+        dotFunc();
+    } else if (e.key === '=' || e.key === 'Enter') {
+        equalFunc();
+    } else if (e.key === 'Backspace') {
+        deleteLast();
+    } else if (e.key === 'Escape') {
+        clearDisp();
+    } else if (e.key === '+' || e.key === '-' || e.key === '*' || e.key === '/') {
+        keyboardOperatorFunc(e);
+    }
+}
