@@ -1,27 +1,127 @@
+const numBtns = document.querySelectorAll('.num-btn');
+const operBtns = document.querySelectorAll('.operator-btn');
+const clearBtn = document.getElementById('clear');
+const delBtn = document.getElementById('delete');
+const dotBtn = document.getElementById('.');
+const equalBtn = document.getElementById('=');
+const calcDisplay = document.getElementById('clac-display');
+const secondDisplay = document.getElementById('second-display');
+
+
+numBtns.forEach(btn => btn.addEventListener('click', btnsFunc));
+operBtns.forEach(btn => btn.addEventListener('click', operatorFunc));
+clearBtn.addEventListener('click', clearDisp);
+delBtn.addEventListener('click', deleteLast);
+dotBtn.addEventListener('click', dotFunc);
+equalBtn.addEventListener('click', equalFunc);
+
+
+//OPERANDS FUNCTIONS-----------------------------
+function sum (a, b){
+    return a + b;	
+};
+function subtract (a, b){
+    return a - b;	
+};
+function multiply (a, b){
+    return a * b;	
+};
+function divide (a, b){
+    return a / b;	
+};
+
 function operand (a, b, c){
-    let result = 0;
     switch (c) {
         case '+':
-            result = a + b;	
-            break;
+            return sum (a, b);
         case '-':
-            result = a - b;	
-            break; 
+            return subtract (a, b);	
         case '*':
-            result = a * b;	
-            break;    
+            return multiply (a, b);	 
         case '/':
             if (b === 0) {
                 throw "Can't divide by 0!"
               } else {
-                result = a / b;	
-              }
-              break;    
+                return divide(a, b);	
+              }   
         default:
-            break;
+            return null;
     }
-    return result;
 };
 
 
+let storedVal = ' ';
+let operatorVal = ' ';
+let secondVal = ' ';
+let result = ' ';
+let resultCounter = 0;
+let operandCounter = 0;
 
+
+function btnsFunc() {
+        if (resultCounter !== 0) {
+            clearDisp();
+        }
+         if (calcDisplay.textContent === '0' ) {
+            calcDisplay.textContent = this.id;
+        } else {
+            calcDisplay.textContent = calcDisplay.textContent + this.id;
+        };
+    console.log(this.id); 
+};
+
+function operatorFunc() {
+    if (operandCounter !== 0) {
+        equalFunc();
+        resultCounter = 0;
+    } 
+    storedVal =  calcDisplay.textContent;
+    operatorVal = this.id;
+    secondDisplay.textContent = storedVal + ' ' + this.id;
+    calcDisplay.textContent = '0';
+    resultCounter = 0;
+    operandCounter ++;
+    
+}
+
+function clearDisp() {
+    calcDisplay.textContent = '0';
+    secondDisplay.textContent =' ';
+    storedVal = ' ';
+    operatorVal = ' ';
+    secondVal = ' ';
+    result = ' ';
+    resultCounter = 0;
+    operandCounter = 0;
+};
+
+function deleteLast() {
+    calcDisplay.textContent = calcDisplay.textContent.toString().slice(0,-1);
+};
+
+function dotFunc() {
+    if (resultCounter !== 0) {
+        clearDisp();
+    }
+    if (calcDisplay.textContent.includes('.')) {
+        return 
+    } else {
+    calcDisplay.textContent = calcDisplay.textContent + '.'; 
+    }
+   
+};
+
+function equalFunc() {
+    if (resultCounter !== 0) {
+        return;
+    }
+    secondVal =  calcDisplay.textContent;
+    result = roundedNumber(operand (parseFloat(storedVal), parseFloat(secondVal), operatorVal));
+    calcDisplay.textContent = result;
+    secondDisplay.textContent =  storedVal + ' ' + operatorVal + ' ' + secondVal + ' ' + '=';
+    resultCounter ++;
+}
+
+function roundedNumber(num) {
+    return Math.round(num * 10000) / 10000
+  }
