@@ -1,0 +1,115 @@
+html {
+    box-sizing: border-box;
+    font-size: 10px;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+#second-display{
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 1rem;
+    grid-area: second-display;
+    color: white;
+    font-size: 2rem;
+}
+.calculator-screen{
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 1rem;
+    grid-area: display;
+    color: white;
+    font-size: 4rem;
+}
+[id="+"]{
+    grid-area: plus;
+}
+[id="-"]{
+    grid-area: minus;
+}
+[id="/"]{
+    grid-area: divide;
+}
+[id="*"]{
+    grid-area: multiply;
+}
+[id="9"]{
+    grid-area: nine;
+}
+[id="8"]{
+    grid-area: eight;
+}
+[id="7"]{
+    grid-area: seven;
+}
+[id="6"]{
+    grid-area: six;
+}
+[id="5"]{
+    grid-area: five;
+}
+[id="4"]{
+    grid-area: four;
+}
+[id="3"]{
+    grid-area: three;
+}
+[id="2"]{
+    grid-area: two;
+}
+[id="1"]{
+    grid-area: one;
+}
+[id="0"]{
+    grid-area: zero;
+}
+[id="="]{
+    grid-area: equal;
+}
+button{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    background-color: rgb(66, 66, 66);
+    color: white;
+    border: none;
+}
+button:hover{
+    background-color: rgb(126, 126, 126);
+}
+.operator-btn{
+    background-color: rgb(238, 102, 61);
+    font-size: 2.5rem;
+}
+.operator-btn:hover{
+    background-color: rgb(209, 79, 39);
+}
+.other-btn{
+    background-color: rgb(79, 54, 218);
+}
+.other-btn:hover{
+    background-color: rgb(86, 29, 179);
+}
+.container{
+    display: grid;
+    width: 500px;
+    height: 800px;
+    grid-gap: 0.1rem;
+    background-color: rgb(19, 19, 19);
+    margin: auto;
+    box-shadow: 0 5px 30px -5px rgba(0, 0, 0, 0.9);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 6.8rem 6.8rem repeat(5, 1fr);
+    grid-template-areas:
+        "second-display second-display second-display second-display"
+        "display display display display"
+        "plus minus divide multiply"
+        "seven eight nine equal"
+        "four five six equal"
+        "one two three equal"
+        "zero dot delete clear"
+    
+}  

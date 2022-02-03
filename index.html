@@ -5,15 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="code.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Rajdhani:wght@500&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <div class="screen">
+    <div class="container">
+
+<!-- CALCULATOR DISPLAY -->
         <div class="stored-number" id="second-display"> </div>
         <div class="calculator-screen" id="clac-display">0</div>
-    </div>
 
-    <div class="calc-btns">
+<!-- CALCULATOR BUTTONS -->
         <button id="0" class="num-btn">0</button>
         <button id="1" class="num-btn">1</button>
         <button id="2" class="num-btn">2</button>
@@ -30,12 +35,13 @@
         <button id="/" class="operator-btn">/</button>
         <button id="*" class="operator-btn">*</button>
 
-        <button id="=">=</button>
+        <button id="=" class="other-btn">=</button>
 
         <button id=".">.</button>
 
-        <button id="clear">clear</button>
-        <button id="delete">delete</button>
+        <button id="clear">C</button>
+        <button id="delete">DEL</button>
+
     </div>
 </body>
 </html>
