@@ -1,4 +1,5 @@
 html {
+    text-align: center;
     box-sizing: border-box;
     font-size: 10px;
   }
@@ -95,8 +96,8 @@ button:hover{
 }
 .container{
     display: grid;
-    width: 500px;
-    height: 800px;
+    width: 50rem;
+    height: 80rem;
     grid-gap: 0.1rem;
     background-color: rgb(19, 19, 19);
     margin: auto;
@@ -111,5 +112,37 @@ button:hover{
         "four five six equal"
         "one two three equal"
         "zero dot delete clear"
-    
 }  
+.page-end{
+    margin-top: 5rem;
+    font-size: 1.5rem;
+    color:  rgb(66, 66, 66);
+    font-family: 'Orbitron', sans-serif;
+}
+
+@media (max-width: 500px){
+.container{
+    width: 30rem;
+    height: 55rem;  
+}
+.page-end{
+    margin-top: 3rem;
+    font-size: 1rem;
+}
+}
+@media (max-width: 300px){
+    .container{
+        width: 20rem;
+        height: 40rem;  
+    }
+    #second-display{
+        font-size: 1rem;
+    }
+    .calculator-screen{
+        font-size: 2rem;
+    }
+    .page-end{
+        margin-top: 1.5rem;
+        font-size: .5rem;
+    }
+    }

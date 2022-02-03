@@ -1,3 +1,4 @@
+//SELECTORS-------------------------------------
 const numBtns = document.querySelectorAll('.num-btn');
 const operBtns = document.querySelectorAll('.operator-btn');
 const clearBtn = document.getElementById('clear');
@@ -7,7 +8,7 @@ const equalBtn = document.getElementById('=');
 const calcDisplay = document.getElementById('clac-display');
 const secondDisplay = document.getElementById('second-display');
 
-
+//EVENT LISTENERS--------------------------------
 numBtns.forEach(btn => btn.addEventListener('click', btnsFunc));
 operBtns.forEach(btn => btn.addEventListener('click', operatorFunc));
 clearBtn.addEventListener('click', clearDisp);
@@ -49,7 +50,7 @@ function operand (a, b, c){
     }
 };
 
-
+//VARIABLES TO STORE VALUES--------------------
 let storedVal = ' ';
 let operatorVal = ' ';
 let secondVal = ' ';
@@ -57,7 +58,7 @@ let result = ' ';
 let resultCounter = 0;
 let operandCounter = 0;
 
-
+//BUTTONS AND KEY FUNCTIONS--------------------
 function btnsFunc() {
         if (resultCounter !== 0) {
             clearDisp();
@@ -148,10 +149,12 @@ function equalFunc() {
     resultCounter ++;
 }
 
+//ROUND DECIMAL NUMBERS--------------------
 function roundedNumber(num) {
     return Math.round(num * 10000) / 10000
 }
 
+//DEPENDING ON THE EVENT KEY, THIS FUNCTION CALLS ANOTHER FUNCTION--------------------
 function keyboardPressed(e) {
     if (e.key >= 0 && e.key <= 9) {
     keyboardFunc(e.key);
